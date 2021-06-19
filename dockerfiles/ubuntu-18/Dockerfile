@@ -29,7 +29,7 @@ ENV LANG 'en_US.UTF-8'
 ENV LANGUAGE 'en_US:en'
 
 # Create symlink for executable
-RUN ln -s ./steamcmd /usr/bin/steamcmd
+RUN ln -s ./steamcmd.sh /usr/bin/steamcmd
 
 # Update SteamCMD and verify latest version
 RUN steamcmd +quit
