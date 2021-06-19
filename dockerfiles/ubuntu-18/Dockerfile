@@ -17,8 +17,7 @@ RUN echo steam steam/question select "I AGREE" | debconf-set-selections \
 
 # Update the repository and install SteamCMD
 ARG DEBIAN_FRONTEND=noninteractive
-RUN dpkg --add-architecture i386 \
- && apt-get update -y \
+RUN apt-get update -y \
  && apt-get install -y --no-install-recommends ca-certificates locales lib32gcc1 curl \
  && rm -rf /var/lib/apt/lists/*
  
