@@ -19,8 +19,10 @@ RUN echo steam steam/question select "I AGREE" | debconf-set-selections \
 ARG DEBIAN_FRONTEND=noninteractive
 RUN dpkg --add-architecture i386 \
  && apt-get update -y \
- && apt-get install -y --no-install-recommends ca-certificates locales steamcmd \
+ && apt-get install -y --no-install-recommends ca-certificates locales lib32gcc1 \
  && rm -rf /var/lib/apt/lists/*
+ 
+RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf - 
 
 # Add unicode support
 RUN locale-gen en_US.UTF-8
@@ -28,7 +30,7 @@ ENV LANG 'en_US.UTF-8'
 ENV LANGUAGE 'en_US:en'
 
 # Create symlink for executable
-RUN ln -s /usr/games/steamcmd /usr/bin/steamcmd
+RUN ln -s ./steamcmd /usr/bin/steamcmd
 
 # Update SteamCMD and verify latest version
 RUN steamcmd +quit
