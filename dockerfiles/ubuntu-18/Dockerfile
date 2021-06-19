@@ -29,11 +29,11 @@ ENV LANG 'en_US.UTF-8'
 ENV LANGUAGE 'en_US:en'
 
 # Create symlink for executable
-RUN ln -s ./steamcmd.sh /usr/bin/steamcmd
+#RUN ln -s ./steamcmd.sh /usr/bin/steamcmd
 
 # Update SteamCMD and verify latest version
-RUN steamcmd +quit
+RUN ./steamcmd.sh +quit
 
 # Set default command
-ENTRYPOINT ["steamcmd"]
+ENTRYPOINT ["./steamcmd.sh"]
 CMD ["+help", "+quit"]
